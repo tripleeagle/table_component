@@ -36,12 +36,12 @@ public class MainController {
     public static SalesFigure getSalesFigure (DataContainer data, String vendorName, TimePeriod timePeriod ){
         Double totalUnits = getTotalUnits( data, timePeriod );
         Double vendorUnits = getVendorUnits( data, vendorName, timePeriod );
-        return new SalesFigure(vendorUnits,totalUnits / vendorUnits);
+        return new SalesFigure(vendorUnits,vendorUnits / totalUnits  );
     }
 
     private static Double getTotalUnits(DataContainer data, TimePeriod timePeriod) {
         Double totalUnits = 0.0;
-        for ( String vendorName : data.getVendors().keySet() ) {
+        for ( String vendorName : data.getVendorMap().keySet() ) {
             totalUnits += getVendorUnits(data, vendorName, timePeriod);
         }
         return totalUnits;
@@ -49,7 +49,7 @@ public class MainController {
 
     private static Double getVendorUnits(DataContainer data, String vendorName, TimePeriod timePeriod) {
         Double vendorUnits = 0.0;
-        Vendor vendor = data.getVendors().get(vendorName);
+        Vendor vendor = data.getVendorMap().get(vendorName);
         for (SellList sellList : vendor.getSellLists())
         {
             if ( timePeriod.equals(sellList.getTimePeriod()) ){

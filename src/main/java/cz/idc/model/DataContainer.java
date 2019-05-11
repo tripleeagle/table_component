@@ -1,43 +1,69 @@
 package cz.idc.model;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 /**
  * @author lyalival
  */
 public class DataContainer {
-    private Map<String,Vendor> vendors;
-    private Map<String,Country> counties;
+    private Map<String,Vendor> vendorMap;
+    private Set<Country> countrySet;
+    private Set<TimePeriod> timePeriodSet;
 
     public DataContainer() {
-        vendors = new HashMap<String, Vendor>();
-        counties = new HashMap<String, Country>();
+        vendorMap = new HashMap<>();
+        countrySet = new HashSet<>();
+        timePeriodSet =  new HashSet<>();
     }
 
     public void addVendor ( Vendor vendor ){
-        vendors.put(vendor.getName(),vendor);
+        vendorMap.put(vendor.getName(),vendor);
     }
 
-    public Map<String, Vendor> getVendors() {
-        return vendors;
+    public boolean addCountry ( Country country ){
+        return countrySet.add(country);
     }
 
-    public void setVendors(Map<String, Vendor> vendors) {
-        this.vendors = vendors;
+    public boolean addTimePeriod ( TimePeriod timePeriod ){
+        return timePeriodSet.add(timePeriod);
     }
 
-    public void addCountry ( Country country ){
-        counties.put(country.getName(),country);
+    public Map<String, Vendor> getVendorMap() {
+        return vendorMap;
     }
 
-    public Map<String, Country> getCounties() {
-        return counties;
+    public void setVendorMap(Map<String, Vendor> vendorMap) {
+        this.vendorMap = vendorMap;
     }
 
-    public void setCounties(Map<String, Country> counties) {
-        this.counties = counties;
+    public Set<Country> getCountrySet() {
+        return countrySet;
+    }
+
+    public void setCountrySet(Set<Country> countrySet) {
+        this.countrySet = countrySet;
+    }
+
+    public Set<TimePeriod> getTimePeriodSet() {
+        return timePeriodSet;
+    }
+
+    public void setTimePeriodSet(Set<TimePeriod> timePeriodSet) {
+        this.timePeriodSet = timePeriodSet;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        DataContainer that = (DataContainer) o;
+        return vendorMap.equals(that.vendorMap) &&
+                countrySet.equals(that.countrySet) &&
+                timePeriodSet.equals(that.timePeriodSet);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(vendorMap, countrySet, timePeriodSet);
     }
 }

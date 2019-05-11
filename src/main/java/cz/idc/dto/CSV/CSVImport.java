@@ -14,20 +14,19 @@ public class CSVImport {
         DataContainer dataContainer = new DataContainer();
         for ( int i = 0; i < dataList.size(); i++) {
             Vendor vendor = getVendor(dataList.get(i).getVendor(), dataContainer);
-            Country country = getCountry(dataList.get(i).getCountry(), dataContainer);
+            Country country = new Country(dataList.get(i).getCountry());
             TimePeriod timePeriod = getTimePeriod (dataList.get(i).getTimeScale());
             Double units = Double.parseDouble(dataList.get(i).getUnits());
 
             SellList sellList = new SellList(vendor,units,timePeriod,country);
             vendor.addSellList(sellList);
 
-            if ( !dataContainer.getVendors().containsKey(vendor.getName())){
+            if ( !dataContainer.getVendorMap().containsKey(vendor.getName())){
                 dataContainer.addVendor(vendor);
             }
 
-            if ( !dataContainer.getCounties().containsKey(vendor.getName())){
-                dataContainer.addCountry(country);
-            }
+            dataContainer.addTimePeriod(timePeriod);
+            dataContainer.addCountry(country);
         }
         return dataContainer;
     }
@@ -39,16 +38,11 @@ public class CSVImport {
     }
 
     private static Vendor getVendor ( String name, DataContainer dataContainer ){
-        Vendor vendor = dataContainer.getVendors().get(name);
+        Vendor vendor = dataContainer.getVendorMap().get(name);
         if ( vendor == null )
             vendor = new Vendor(name);
         return vendor;
     }
 
-    private static Country getCountry (String name, DataContainer dataContainer ){
-        Country country = dataContainer.getCounties().get(name);
-        if ( country == null )
-            country = new Country(name);
-        return country;
-    }
+
 }
