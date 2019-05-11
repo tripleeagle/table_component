@@ -17,12 +17,20 @@ public class DataContainer {
         counties = new HashMap<String, Country>();
     }
 
+    public void addVendor ( Vendor vendor ){
+        vendors.put(vendor.getName(),vendor);
+    }
+
     public Map<String, Vendor> getVendors() {
         return vendors;
     }
 
     public void setVendors(Map<String, Vendor> vendors) {
         this.vendors = vendors;
+    }
+
+    public void addCountry ( Country country ){
+        counties.put(country.getName(),country);
     }
 
     public Map<String, Country> getCounties() {

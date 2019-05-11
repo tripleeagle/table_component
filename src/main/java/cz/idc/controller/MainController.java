@@ -16,6 +16,9 @@ import java.util.List;
  * @author lyalival
  */
 public class MainController {
+    /**
+     * @note The first row in the csv file is skipped, 'cause we don't want to import the header
+     */
     public static DataContainer importCSV ( String filePath ){
         List<CSVItem> csvItems = new ArrayList<>();
         try (
@@ -23,8 +26,9 @@ public class MainController {
             CSVReader csvReader = new CSVReader(reader);
         ) {
             String[] nextRecord;
+            csvReader.readNext();
             while ((nextRecord = csvReader.readNext()) != null) {
-                csvItems.add(new CSVItem(nextRecord[0],nextRecord[1],nextRecord[2],nextRecord[3]));
+                csvItems.add(new CSVItem(nextRecord[0], nextRecord[1], nextRecord[2], nextRecord[3]));
             }
         } catch (IOException e) {
             e.printStackTrace();

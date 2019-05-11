@@ -21,14 +21,21 @@ public class CSVImport {
             SellList sellList = new SellList(vendor,units,timePeriod,country);
             vendor.addSellList(sellList);
             country.addSellList(sellList);
+
+            if ( !dataContainer.getVendors().containsKey(vendor.getName())){
+                dataContainer.addVendor(vendor);
+            }
+
+            if ( !dataContainer.getCounties().containsKey(vendor.getName())){
+                dataContainer.addCountry(country);
+            }
         }
         return dataContainer;
     }
 
     private static TimePeriod getTimePeriod( String timeScale ) {
-        String tmp = timeScale;
-        tmp.replaceAll("\\s+","");
-        String [] tmpArr = tmp.split(":");
+        String tmp = timeScale.replaceAll("\\s+","");
+        String [] tmpArr = tmp.split("Q");
         return new TimePeriod(Integer.parseInt(tmpArr[0]),Integer.parseInt(tmpArr[1]));
     }
 
