@@ -28,8 +28,14 @@ public class TestImportCSV {
     public void testSalesFigure (){
         DataContainer dataContainer = MainController.importCSV(projectsFolder + resourcesFolder + "data.csv");
         SalesFigure salesFigureAcerRef = new SalesFigure(11376.923483,0.251153726);
-        SalesFigure salesFigureAcer = MainController.getSalesFigure(dataContainer,"Acer",new TimePeriod(2010,3));
+        SalesFigure salesFigureAcer = MainController.getSalesFigure(dataContainer,"Acer", new TimePeriod(2010,3));
         assert ( salesFigureAcer.equals(salesFigureAcerRef));
+    }
+
+    @Test
+    public void testExportToHTML(){
+        DataContainer dataContainer = MainController.importCSV(projectsFolder + resourcesFolder + "data.csv");
+        MainController.exportToHTML(dataContainer);
     }
 
     private DataContainer getRefDataContainer() {
