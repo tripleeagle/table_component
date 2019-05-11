@@ -37,11 +37,12 @@ public class Vendor {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Vendor vendor = (Vendor) o;
-        return name.equals(vendor.name);
+        return name.equals(vendor.name) &&
+                sellLists.equals(vendor.sellLists);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name);
+        return Objects.hash(name, sellLists);
     }
 }

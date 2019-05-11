@@ -1,5 +1,7 @@
 package cz.idc.model;
 
+import java.util.Objects;
+
 /**
  * @author lyalival
  */
@@ -26,5 +28,19 @@ public class TimePeriod {
 
     public void setQuater(int quater) {
         this.quater = quater;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        TimePeriod that = (TimePeriod) o;
+        return year == that.year &&
+                quater == that.quater;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(year, quater);
     }
 }

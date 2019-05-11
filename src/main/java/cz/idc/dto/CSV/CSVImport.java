@@ -1,6 +1,6 @@
 package cz.idc.dto.CSV;
 
-import cz.idc.dto.CSV.model.CSVItem;
+import cz.idc.dto.CSV.model.CSVRow;
 import cz.idc.model.*;
 
 import java.util.List;
@@ -10,7 +10,7 @@ import java.util.List;
  */
 public class CSVImport {
 
-    public static DataContainer importData(List<CSVItem> dataList) {
+    public static DataContainer importData(List<CSVRow> dataList) {
         DataContainer dataContainer = new DataContainer();
         for ( int i = 0; i < dataList.size(); i++) {
             Vendor vendor = getVendor(dataList.get(i).getVendor(), dataContainer);
@@ -20,7 +20,6 @@ public class CSVImport {
 
             SellList sellList = new SellList(vendor,units,timePeriod,country);
             vendor.addSellList(sellList);
-            country.addSellList(sellList);
 
             if ( !dataContainer.getVendors().containsKey(vendor.getName())){
                 dataContainer.addVendor(vendor);

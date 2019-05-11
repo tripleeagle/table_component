@@ -49,4 +49,19 @@ public class SellList {
     public void setCountry(Country country) {
         this.country = country;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        SellList sellList = (SellList) o;
+        return units.equals(sellList.units) &&
+                timePeriod.equals(sellList.timePeriod) &&
+                country.equals(sellList.country);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(vendor, units, timePeriod, country);
+    }
 }
