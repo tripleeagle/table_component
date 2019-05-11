@@ -1,5 +1,7 @@
 package cz.idc.model;
 
+import java.util.Objects;
+
 /**
  * @author lyalival
  */
@@ -8,6 +10,13 @@ public class SellList {
     private Double units;
     private TimePeriod timePeriod;
     private Country country;
+
+    public SellList(Vendor vendor, Double units, TimePeriod timePeriod, Country country) {
+        this.vendor = vendor;
+        this.units = units;
+        this.timePeriod = timePeriod;
+        this.country = country;
+    }
 
     public Vendor getVendor() {
         return vendor;

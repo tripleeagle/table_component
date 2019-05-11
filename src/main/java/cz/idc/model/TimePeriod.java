@@ -7,6 +7,11 @@ public class TimePeriod {
     private int year;
     private int quater;
 
+    public TimePeriod(int year, int quater) {
+        this.year = year;
+        this.quater = quater;
+    }
+
     public int getYear() {
         return year;
     }
