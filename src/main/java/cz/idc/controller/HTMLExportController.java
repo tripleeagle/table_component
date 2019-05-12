@@ -15,12 +15,9 @@ import java.util.List;
  */
 public class HTMLExportController {
 
-    public static void exportToHTMLFile (List<HTMLTable> htmlTableList){
-        String projectsFolder = System.getProperty ("user.home") + "/Projects/";
-        String resourcesFolder = "TableComponent/src/test/resources/";
-        String fileName = "index.html";
+    public static void exportToHTMLFile (String filePath, List<HTMLTable> htmlTableList){
         try {
-            HTMLExport.exportToHTML(htmlTableList,projectsFolder + resourcesFolder + fileName);
+            HTMLExport.exportToHTML(htmlTableList,filePath);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -28,6 +25,14 @@ public class HTMLExportController {
 
     public static List<HTMLTable> convertToHTMLList ( DataContainer dataContainer ){
         return HTMLExport.convertData(dataContainer);
+    }
+
+    public static int getOrdinalNumberOfVendor ( String vendorName, HTMLTable htmlTable ){
+        for ( int i = 0; i < htmlTable.getHtmlRows().size(); i++ ){
+            if ( vendorName.equals(htmlTable.getHtmlRows().get(i).getVendor()))
+                return i + 1;
+        }
+        return -1;
     }
 
     public static List<HTMLTable> sortHTMLListByVendor ( List<HTMLTable> htmlTableList ){

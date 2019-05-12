@@ -17,7 +17,7 @@ import java.util.List;
  */
 public class ImportCSVController {
 
-    public static DataContainer importCSV (String filePath ){
+    public static DataContainer importCSV (String filePath){
         List<CSVRow> csvRows = new ArrayList<>();
         try (
                 Reader reader = Files.newBufferedReader(Paths.get(filePath));
