@@ -1,10 +1,8 @@
 package cz.idc;
 
-import cz.idc.controller.MainController;
-import cz.idc.dto.SalesFigure;
+import cz.idc.controller.ImportCSVController;
 import cz.idc.model.*;
 import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 /**
@@ -16,7 +14,7 @@ public class TestImportCSV {
 
     @Test
     public void test(){
-        DataContainer dataContainer = MainController.importCSV(projectsFolder + resourcesFolder + "data.csv");
+        DataContainer dataContainer = ImportCSVController.importCSV(projectsFolder + resourcesFolder + "data.csv");
         assertNotNull(dataContainer);
         DataContainer dataContainerRef = getRefDataContainer();
         assert( dataContainer.getCountrySet().equals(dataContainerRef.getCountrySet()));
@@ -24,19 +22,6 @@ public class TestImportCSV {
         assert( dataContainer.equals(dataContainerRef));
     }
 
-    @Test
-    public void testSalesFigure (){
-        DataContainer dataContainer = MainController.importCSV(projectsFolder + resourcesFolder + "data.csv");
-        SalesFigure salesFigureAcerRef = new SalesFigure(11376.923483,0.251153726);
-        SalesFigure salesFigureAcer = MainController.getSalesFigure(dataContainer,"Acer", new TimePeriod(2010,3));
-        assert ( salesFigureAcer.equals(salesFigureAcerRef));
-    }
-
-    @Test
-    public void testExportToHTML(){
-        DataContainer dataContainer = MainController.importCSV(projectsFolder + resourcesFolder + "data.csv");
-        MainController.exportToHTML(dataContainer);
-    }
 
     private DataContainer getRefDataContainer() {
         DataContainer dataContainerRef = new DataContainer();

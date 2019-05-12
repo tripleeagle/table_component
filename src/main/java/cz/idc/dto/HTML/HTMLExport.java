@@ -11,6 +11,7 @@ import cz.idc.model.TimePeriod;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +20,7 @@ import java.util.List;
  */
 public class HTMLExport {
 
-    private static List<HTMLTable> convertData (DataContainer dataContainer ){
+    public static List<HTMLTable> convertData (DataContainer dataContainer ){
         List<HTMLTable> htmlTables = new ArrayList<>();
         for (Country country : dataContainer.getCountrySet())
         {
@@ -33,8 +34,9 @@ public class HTMLExport {
                 }
 
                 //Add a total row
-                Double totalUnits = MainController.getTotalUnits(dataContainer,country,timePeriod);
+                /*Double totalUnits = MainController.getTotalUnits(dataContainer,country,timePeriod);
                 htmlTable.addHTMLRow(new HTMLRow("Total",totalUnits,1.0));
+                */
 
                 htmlTables.add(htmlTable);
             }
@@ -42,27 +44,42 @@ public class HTMLExport {
         return htmlTables;
     }
 
-    public static void exportToHTML ( DataContainer dataContainer, String filenNamePath ) throws IOException {
+    public static void exportToHTML ( List<HTMLTable> htmlTables, String filenNamePath ) throws IOException {
         PrintWriter printWriter = new PrintWriter(new FileWriter(filenNamePath));
-        List<HTMLTable> htmlTables = HTMLExport.convertData(dataContainer);
 
         addHTMLHeader(printWriter);
         int i = 1;
         for ( HTMLTable htmlTable : htmlTables) {
             addTableTitle(printWriter, i,htmlTable.getCountry(),htmlTable.getPeriod());
             addTableHeader(printWriter);
+            Double totalUnits = 0.0;
             for ( HTMLRow htmlRow : htmlTable.getHtmlRows() ){
                 printWriter.append("<tr>");
                 addTableColumnItem(printWriter,htmlRow.getVendor());
                 addTableColumnItem(printWriter,htmlRow.getUnits());
+                totalUnits += getDouble(htmlRow.getUnits());
                 addTableColumnItem(printWriter,htmlRow.getShare());
                 printWriter.append("</tr>");
             }
+
+            //Add total number
+            printWriter.append("<tr>");
+            addTableColumnItem(printWriter,"Total");
+            DecimalFormat decimalFormatFormat = new DecimalFormat("#,##0");
+            addTableColumnItem(printWriter,decimalFormatFormat.format(totalUnits));
+            addTableColumnItem(printWriter,"100%");
+            printWriter.append("</tr>");
+
             addTableFooter(printWriter);
             i++;
         }
         addHTMLFooter(printWriter);
         printWriter.close();
+    }
+
+    private static Double getDouble ( String num ){
+        num = num.replaceAll(",","");
+        return Double.parseDouble(num);
     }
 
     private static void addHTMLHeader(PrintWriter printWriter) {
