@@ -16,10 +16,10 @@ public class HTMLTable {
     public HTMLTable(String country, TimePeriod period) {
         htmlRows = new ArrayList<>();
         this.country = country;
-        this.period =  "" + period.getQuater() + "Q" + period.getYear();
+        this.period = "" + period.getQuater() + "Q" + period.getYear();
     }
 
-    public void addHTMLRow ( HTMLRow htmlRow ){
+    public void addHTMLRow(HTMLRow htmlRow) {
         htmlRows.add(htmlRow);
     }
 
@@ -40,7 +40,7 @@ public class HTMLTable {
     }
 
     public void setPeriod(TimePeriod period) {
-        this.period =  "" + period.getQuater() + "Q" + period.getYear();
+        this.period = "" + period.getQuater() + "Q" + period.getYear();
     }
 
     public List<HTMLRow> getHtmlRows() {

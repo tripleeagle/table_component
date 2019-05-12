@@ -23,7 +23,7 @@ public class XLSXImport {
      * TODO 1) using convertData (dataContainer) convert data
      * TODO 2) Export them to the fileNamePath, e.g. https://medium.com/@ssaurel/reading-microsoft-excel-xlsx-files-in-java-2172f5aaccbe
      */
-    public static DataContainer importFromFile (String filePath) throws IOException {
+    public static DataContainer importFromFile(String filePath) throws IOException {
         throw new UnsupportedOperationException("TODO");
     }
 }

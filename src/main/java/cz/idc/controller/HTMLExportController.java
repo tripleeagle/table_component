@@ -15,38 +15,38 @@ import java.util.List;
  */
 public class HTMLExportController {
 
-    public static void exportToHTMLFile (String filePath, List<HTMLTable> htmlTableList){
+    public static void exportToHTMLFile(String filePath, List<HTMLTable> htmlTableList) {
         try {
-            HTMLExport.exportToHTML(htmlTableList,filePath);
+            HTMLExport.exportToHTML(htmlTableList, filePath);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public static List<HTMLTable> convertToHTMLList ( DataContainer dataContainer ){
+    public static List<HTMLTable> convertToHTMLList(DataContainer dataContainer) {
         return HTMLExport.convertData(dataContainer);
     }
 
-    public static int getOrdinalNumberOfVendor ( String vendorName, HTMLTable htmlTable ){
-        for ( int i = 0; i < htmlTable.getHtmlRows().size(); i++ ){
-            if ( vendorName.equals(htmlTable.getHtmlRows().get(i).getVendor()))
+    public static int getOrdinalNumberOfVendor(String vendorName, HTMLTable htmlTable) {
+        for (int i = 0; i < htmlTable.getHtmlRows().size(); i++) {
+            if (vendorName.equals(htmlTable.getHtmlRows().get(i).getVendor()))
                 return i + 1;
         }
         return -1;
     }
 
-    public static List<HTMLTable> sortHTMLListByVendor ( List<HTMLTable> htmlTableList ){
-        for ( HTMLTable htmlTable : htmlTableList ){
+    public static List<HTMLTable> sortHTMLListByVendor(List<HTMLTable> htmlTableList) {
+        for (HTMLTable htmlTable : htmlTableList) {
             Collections.sort(htmlTable.getHtmlRows(), Comparator.comparing(HTMLRow::getVendor));
         }
         return htmlTableList;
     }
 
-    public static List<HTMLTable> sortHTMLListByUnits ( List<HTMLTable> htmlTableList ){
-        for ( HTMLTable htmlTable : htmlTableList ){
+    public static List<HTMLTable> sortHTMLListByUnits(List<HTMLTable> htmlTableList) {
+        for (HTMLTable htmlTable : htmlTableList) {
             Collections.sort(htmlTable.getHtmlRows(), (o1, o2) -> {
-                Double o1Double = Double.parseDouble(o1.getUnits().replaceAll(",",""));
-                Double o2Double = Double.parseDouble(o2.getUnits().replaceAll(",",""));
+                Double o1Double = Double.parseDouble(o1.getUnits().replaceAll(",", ""));
+                Double o2Double = Double.parseDouble(o2.getUnits().replaceAll(",", ""));
                 return o1Double < o2Double ? -1 : ((o1Double == o2Double) ? 0 : 1);
             });
         }

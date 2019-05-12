@@ -1,6 +1,6 @@
 package cz.idc.model;
 
-import java.util.*;
+import java.util.Objects;
 
 /**
  * @author lyalival
@@ -8,7 +8,7 @@ import java.util.*;
 public class Country {
     private String name;
 
-    public Country( String name ) {
+    public Country(String name) {
         this.name = name;
     }
 

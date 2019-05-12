@@ -1,6 +1,8 @@
 package cz.idc.model;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 /**
  * @author lyalival
@@ -9,7 +11,7 @@ public class Vendor {
     private String name;
     private List<SellList> sellLists;
 
-    public Vendor( String name ) {
+    public Vendor(String name) {
         this.name = name;
         sellLists = new ArrayList<SellList>();
     }
@@ -22,7 +24,9 @@ public class Vendor {
         this.name = name;
     }
 
-    public void addSellList(SellList sellList ) { sellLists.add(sellList); }
+    public void addSellList(SellList sellList) {
+        sellLists.add(sellList);
+    }
 
     public List<SellList> getSellLists() {
         return sellLists;

@@ -10,7 +10,7 @@ import java.io.IOException;
  */
 public class CSVController {
 
-    public static DataContainer importCSVFromFile (String filePath){
+    public static DataContainer importCSVFromFile(String filePath) {
         DataContainer dataContainer = new DataContainer();
         try {
             dataContainer = CSVImport.importFromFile(filePath);
@@ -24,7 +24,7 @@ public class CSVController {
     /**
      * TODO using HTMLExport.exportToHTML(...) the dataContainer to the filePath
      */
-    public static void exportToCSVFile (String filePath, DataContainer dataContainer){
+    public static void exportToCSVFile(String filePath, DataContainer dataContainer) {
         throw new UnsupportedOperationException("TODO");
     }
 

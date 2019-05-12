@@ -6,25 +6,25 @@ import java.util.*;
  * @author lyalival
  */
 public class DataContainer {
-    private Map<String,Vendor> vendorMap;
+    private Map<String, Vendor> vendorMap;
     private Set<Country> countrySet;
     private Set<TimePeriod> timePeriodSet;
 
     public DataContainer() {
         vendorMap = new HashMap<>();
         countrySet = new HashSet<>();
-        timePeriodSet =  new HashSet<>();
+        timePeriodSet = new HashSet<>();
     }
 
-    public void addVendor ( Vendor vendor ){
-        vendorMap.put(vendor.getName(),vendor);
+    public void addVendor(Vendor vendor) {
+        vendorMap.put(vendor.getName(), vendor);
     }
 
-    public boolean addCountry ( Country country ){
+    public boolean addCountry(Country country) {
         return countrySet.add(country);
     }
 
-    public boolean addTimePeriod ( TimePeriod timePeriod ){
+    public boolean addTimePeriod(TimePeriod timePeriod) {
         return timePeriodSet.add(timePeriod);
     }
 
