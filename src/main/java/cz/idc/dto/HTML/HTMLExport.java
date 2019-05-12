@@ -32,12 +32,6 @@ public class HTMLExport {
                     SalesFigure salesFigure = MainController.getSalesFigure(dataContainer,vendorName,country,timePeriod);
                     htmlTable.addHTMLRow(new HTMLRow(vendorName,salesFigure.getUnits(),salesFigure.getShare()));
                 }
-
-                //Add a total row
-                /*Double totalUnits = MainController.getTotalUnits(dataContainer,country,timePeriod);
-                htmlTable.addHTMLRow(new HTMLRow("Total",totalUnits,1.0));
-                */
-
                 htmlTables.add(htmlTable);
             }
         }

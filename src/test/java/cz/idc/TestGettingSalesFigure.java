@@ -1,6 +1,6 @@
 package cz.idc;
 
-import cz.idc.controller.ImportCSVController;
+import cz.idc.controller.CSVController;
 import cz.idc.controller.MainController;
 import cz.idc.dto.SalesFigure;
 import cz.idc.model.DataContainer;
@@ -16,7 +16,7 @@ public class TestGettingSalesFigure {
 
     @Test
     public void testSalesFigure (){
-        DataContainer dataContainer = ImportCSVController.importCSV(projectsFolder + resourcesFolder + "data.csv");
+        DataContainer dataContainer = CSVController.importCSVFromFile(projectsFolder + resourcesFolder + "data.csv");
         SalesFigure salesFigureAcerRef = new SalesFigure(11376.923483,0.251153726);
         SalesFigure salesFigureAcer = MainController.getSalesFigure(dataContainer,"Acer", new TimePeriod(2010,3));
         assert ( salesFigureAcer.equals(salesFigureAcerRef));

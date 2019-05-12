@@ -1,6 +1,6 @@
 package cz.idc;
 
-import cz.idc.controller.ImportCSVController;
+import cz.idc.controller.CSVController;
 import cz.idc.model.*;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -14,7 +14,7 @@ public class TestImportCSV {
 
     @Test
     public void test(){
-        DataContainer dataContainer = ImportCSVController.importCSV(projectsFolder + resourcesFolder + "data.csv");
+        DataContainer dataContainer = CSVController.importCSVFromFile(projectsFolder + resourcesFolder + "data.csv");
         assertNotNull(dataContainer);
         DataContainer dataContainerRef = getRefDataContainer();
         assert( dataContainer.getCountrySet().equals(dataContainerRef.getCountrySet()));

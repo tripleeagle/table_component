@@ -1,8 +1,14 @@
 package cz.idc.dto.CSV;
 
+import com.opencsv.bean.CsvToBeanBuilder;
 import cz.idc.dto.CSV.model.CSVRow;
 import cz.idc.model.*;
 
+import java.io.IOException;
+import java.io.Reader;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -10,7 +16,7 @@ import java.util.List;
  */
 public class CSVImport {
 
-    public static DataContainer importData(List<CSVRow> dataList) {
+    private static DataContainer convertData(List<CSVRow> dataList) {
         DataContainer dataContainer = new DataContainer();
         for ( int i = 0; i < dataList.size(); i++) {
             Vendor vendor = getVendor(dataList.get(i).getVendor(), dataContainer);
@@ -29,6 +35,12 @@ public class CSVImport {
             dataContainer.addCountry(country);
         }
         return dataContainer;
+    }
+
+    public static DataContainer importFromFile (String filePath) throws IOException {
+        Reader reader = Files.newBufferedReader(Paths.get(filePath));
+        List<CSVRow> csvRows = new CsvToBeanBuilder(reader).withType(CSVRow.class).build().parse();
+        return CSVImport.convertData(csvRows);
     }
 
     private static TimePeriod getTimePeriod( String timeScale ) {

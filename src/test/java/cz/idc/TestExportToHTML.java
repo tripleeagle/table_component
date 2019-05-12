@@ -1,7 +1,7 @@
 package cz.idc;
 
+import cz.idc.controller.CSVController;
 import cz.idc.controller.HTMLExportController;
-import cz.idc.controller.ImportCSVController;
 import cz.idc.dto.HTML.model.HTMLTable;
 import cz.idc.model.DataContainer;
 import org.junit.jupiter.api.Test;
@@ -17,7 +17,7 @@ public class TestExportToHTML {
     private static String fileName = "index.html";
     private static String filePath = projectsFolder + resourcesFolder + fileName;
 
-    private final DataContainer dataContainer = ImportCSVController.importCSV(projectsFolder + resourcesFolder + "data.csv");
+    private final DataContainer dataContainer = CSVController.importCSVFromFile(projectsFolder + resourcesFolder + "data.csv");
     private List<HTMLTable> htmlTableList = HTMLExportController.convertToHTMLList(dataContainer);
 
     @Test
