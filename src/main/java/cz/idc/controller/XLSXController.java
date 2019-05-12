@@ -6,13 +6,19 @@ import cz.idc.model.DataContainer;
  * @author lyalival
  */
 public class XLSXController {
+
+
+    /**
+     * TODO use XLSXImport method importFromFile
+     */
     public static DataContainer importXLSXFromFile (String filePath){
-        //TODO use XLSXImport method importFromFile
         throw new UnsupportedOperationException("TODO");
     }
 
+    /**
+     * TODO use XLSXExport method exportToXLS
+     */
     public static void exportToXLSXFile (String filePath, DataContainer dataContainer){
-        //TODO use XLSXExport method exportToXLS
         throw new UnsupportedOperationException("TODO");
     }
 }
